@@ -1,0 +1,250 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #b7d799 0%, #b7d799 100%);
+  color: #496935;
+  text-align: center;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.imagem {
+
+    display: flex;
+    justify-content: center;
+    padding-left: 175px;
+    width: 500px;
+    height: 500px;
+
+}
+
+.tela {
+  display: none;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.tela.ativa {
+  display: block;
+}
+
+h1 {
+  color: 3e812f;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: 3e812f;
+  margin: 15px 0;
+}
+
+.carta-fofa {
+  background: rgba(255, 243, 216, 0.95);
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 20px rgba(113, 172, 45, 0.15);
+  font-size: 18px;
+  line-height: 1.6;
+  border: 2px solid #6da457;
+}
+
+.menu-jogos {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+button {
+  background: linear-gradient(135deg, #6b9140 0%, #6b9140 100%);
+  color: rgb(248, 241, 227);
+  border: none;
+  padding: 12px 22px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(62, 112, 26, 0.15);
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: linear-gradient(135deg, #83c25f 0%, #83c25f 100%);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+}
+
+.btn-voltar {
+  background: #6b9140;
+  font-size: 14px;
+  padding: 8px 18px;
+  margin-bottom: 15px;
+}
+
+/* JOGO 1: COLETAR CORAÇÕES */
+#area-jogo-coracoes {
+  width: 100%;
+  height: 350px;
+  background-color: #faecdb;
+  border: 3px solid #79b752;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 10px;
+  box-shadow: inset 0 0 10px rgba(54, 80, 33, 0.05);
+}
+
+#cesta {
+  position: absolute;
+  bottom: 10px;
+  left: 45%;
+  width: 95px;
+  user-select: none;
+  will-change: left;
+}
+
+#cesta img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.coracao-caindo {
+  position: absolute;
+  width: 45px;
+  height: auto;
+  user-select: none;
+}
+
+.coracao-caindo img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#placar-coracoes, #placar-baloes, #placar-minado {
+  font-size: 18px;
+  font-weight: bold;
+  color: 6b9140;
+  margin: 10px 0 5px 0;
+}
+
+#num-bandeiras {
+  color: #6b3f75;
+  font-size: 22px;
+}
+
+/* JOGO 2: CAMPO MINADO CLÁSSICO */
+#tabuleiro-minado {
+  display: grid;
+  grid-template-columns: repeat(12, 42px);
+  gap: 3px;
+  justify-content: center;
+  margin: 15px auto;
+  background-color: #75965a;
+  padding: 10px;
+  border-radius: 12px;
+  width: fit-content;
+  box-shadow: inset 0 0 8px rgba(66, 93, 42, 0.2);
+}
+
+.celula-minada {
+  width: 42px;
+  height: 42px;
+  background-color: #6b9140;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  cursor: pointer;
+  user-select: none;
+  box-shadow: 1px 1px 0px #375724;
+  transition: background-color 0.1s;
+}
+
+.celula-minada:hover {
+  background-color: #83c25f;
+}
+
+.celula-minada.revelada {
+  background-color: #fff6ec !important;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+  color: #1b4332 !important;
+  cursor: default;
+}
+
+.celula-minada.bomba {
+  background-color: #b239e6 !important;
+}
+
+.celula-minada img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+.num-1 { color: #1d3557 !important; }
+.num-2 { color: #2a9d8f !important; }
+.num-3 { color: #e76f51 !important; }
+.num-4 { color: #457b9d !important; }
+
+/* JOGO 3: BALÕES MAIS RÁPIDOS (1.2s) */
+#area-jogo-baloes {
+  width: 100%;
+  height: 350px;
+  background-color: #faecdb;
+  border: 3px solid #79b752;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 15px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+.balao-container {
+  position: absolute;
+  width: 55px;
+  cursor: pointer;
+  user-select: none;
+  animation: flutuar 1.2s linear infinite;
+  transform: translateX(-50%);
+}
+
+.balao-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  pointer-events: none;
+}
+
+@keyframes flutuar {
+  0% { transform: translateY(350px) scale(0.9); }
+  100% { transform: translateY(-50px) scale(1.1); }
+}
+
+#placar-cobrinha {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4f753d;
+  margin: 10px 0 5px 0;
+}
+
+#canvas-cobrinha {
+  background-color: #faecdb;
+  border: 3px solid #79b752;
+  border-radius: 15px;
+  margin: 10px auto;
+  display: block;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}

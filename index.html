@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <link rel="icon"  href="favicon.ico" width=100 height=100>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday!!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- TELA INICIAL / MENU -->
+  <div id="menu" class="tela ativa">
+    <h1>Hello Seiz!</h1>
+
+    <div class="imagem">
+
+    <img class="hi" src="hi.gif" alt="hi">
+    
+</div>
+
+    <div class="carta-fofa">
+      <p>I'm here to wish you an awesome day, you are amazing and I love you! Here a few little games for you to pass the time :3</p>
+    </div>
+    <div class="menu-jogos">
+      <button onclick="mostrarTela('jogo-coracoes')">Collect hearts</button>
+      <button onclick="mostrarTela('jogo-campo-minado')">Minesweeper</button>
+      <button onclick="mostrarTela('jogo-baloes')">Pop the balloons</button>
+      <button onclick="mostrarTela('jogo-cobrinha')">Snake</button>
+    </div>
+  </div>
+
+  <!-- JOGO 1: COLETAR CORAÇÕES -->
+  <div id="jogo-coracoes" class="tela">
+    <button class="btn-voltar" onclick="mostrarTela('menu')">Menu</button>
+    <h2>Collect hearts</h2>
+    <div id="placar-coracoes">Score: 0 / 5000</div>
+    <p style="font-size: 13px; color: #3b6a2d; margin-bottom: 5px;">
+      Use <b>A / D</b> or <b>Arrows</b> To move the basket.<br>
+    </p>
+    <div id="area-jogo-coracoes">
+      <div id="cesta">
+        <img src="cesta.png" alt="Cesta">
+      </div>
+    </div>
+  </div>
+
+  <!-- JOGO 2: CAMPO MINADO CLÁSSICO (12x12 - 30 MINAS) -->
+  <div id="jogo-campo-minado" class="tela">
+    <button class="btn-voltar" onclick="mostrarTela('menu')">Menu</button>
+    <h2>Minesweeper</h2>
+    
+    <div id="placar-minado" style="display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap;">
+      <span style="display: inline-flex; align-items: center; gap: 4px;">
+        <img src="bandeira.png" alt="Bandeira" style="width: 38px; height: 38px; object-fit: contain;"> Flags: <span id="num-bandeiras">30</span>
+      </span>
+      <span>|</span>
+      <span style="display: inline-flex; align-items: center; gap: 4px;">
+        <img src="bomba.png" alt="Bomba" style="width: 38px; height: 38px; object-fit: contain;"> Mines: 30
+      </span>
+    </div>
+
+    <div id="tabuleiro-minado"></div>
+    <button onclick="iniciarCampoMinado()">Restart</button>
+  </div>
+
+  <!-- JOGO 3: ESTOURAR BALÕES (20 BALÕES EM 30 SEGUNDOS - RÁPIDO) -->
+  <div id="jogo-baloes" class="tela">
+    <button class="btn-voltar" onclick="mostrarTela('menu')">Menu</button>
+    <h2>Pop the balloons</h2>
+    <div id="placar-baloes">Balloons: 0 / 20 | Timer: <span id="tempo-baloes">30</span>s</div>
+    <div id="area-jogo-baloes"></div>
+  </div>
+
+  <!-- JOGO 4: COBRINHA DO AMOR -->
+<div id="jogo-cobrinha" class="tela">
+  <button class="btn-voltar" onclick="mostrarTela('menu')">Menu</button>
+  <h2>Snake</h2>
+  <div id="placar-cobrinha">Pontuação: 0 / 150</div>
+  <p style="font-size: 13px; color: #3b6a2d; margin-bottom: 5px;">
+    Use <b>Arrows</b> or <b>W/A/S/D</b> To guide the snake!
+  </p>
+  <canvas id="canvas-cobrinha" width="300" height="300"></canvas>
+</div>
+
+  <!-- TELA DE VITÓRIA GERAL -->
+  <div id="tela-vitoria" class="tela">
+    <div class="carta-fofa" style="margin-top: 50px;">
+      <h2 style="color: #405f28; font-size: 28px; margin-bottom: 15px;">🎉 NICE ONE BABY! 🎉</h2>
+      <p id="mensagem-vitoria" style="font-size: 20px; margin-bottom: 25px;">You did it! I hope you know I'll always be here for you, whenever you need me!</p>
+      <button onclick="mostrarTela('menu')">Go back to menu</button>
+    </div>
+  </div>
+
+  <!-- TELA DE DERROTA / GAME OVER (CORAÇÕES) -->
+  <div id="tela-derrota-coracoes" class="tela">
+    <div class="carta-fofa" style="margin-top: 50px; border-color: 6da457;">
+      <h2 style="color: #692e79; font-size: 28px; margin-bottom: 15px;">Aww man</h2>
+      <p style="font-size: 20px; margin-bottom: 25px;">I'm like so sorry bro</p>
+      <button onclick="mostrarTela('jogo-coracoes')" style="background: linear-gradient(135deg, #692e79 0%, #692e79 100%);">Try again</button>
+      <button onclick="mostrarTela('menu')" style="margin-top: 10px;">Go back to menu</button>
+    </div>
+  </div>
+
+  <!-- TELA DE DERROTA / GAME OVER (CAMPO MINADO) -->
+  <div id="tela-derrota-minado" class="tela">
+    <div class="carta-fofa" style="margin-top: 50px; border-color: 6da457;">
+      <h2 style="color: #692e79; font-size: 28px; margin-bottom: 15px;">You really are the expert, huh?</h2>
+      <p style="font-size: 20px; margin-bottom: 25px;">You make my heart go BOOM just like those mines, heh...</p>
+      <button onclick="mostrarTela('jogo-campo-minado')" style="background: linear-gradient(135deg, #692e79 0%, #692e79 100%);">Try again</button>
+      <button onclick="mostrarTela('menu')" style="margin-top: 10px;">Go back to menu</button>
+    </div>
+  </div>
+
+  <!-- TELA DE DERROTA / GAME OVER (BALÕES) -->
+  <div id="tela-derrota-baloes" class="tela">
+    <div class="carta-fofa" style="margin-top: 50px; border-color: 6da457;">
+      <h2 style="color: #692e79; font-size: 28px; margin-bottom: 15px;">You ran out of time!</h2>
+      <p style="font-size: 20px; margin-bottom: 25px;">Skill issue</p>
+      <button onclick="mostrarTela('jogo-baloes')" style="background: linear-gradient(135deg, #692e79 0%, #692e79 100%);">Try again</button>
+      <button onclick="mostrarTela('menu')" style="margin-top: 10px;">Go back to menu</button>
+    </div>
+  </div>
+
+  <div id="tela-derrota-cobrinha" class="tela">
+  <div class="carta-fofa" style="margin-top: 50px; border-color: #692e79;">
+    <h2 style="color: #692e79; font-size: 28px; margin-bottom: 15px;">Damn</h2>
+    <p style="font-size: 20px; margin-bottom: 25px;">Lmfao so small</p>
+    <button onclick="mostrarTela('jogo-cobrinha')" style="background: linear-gradient(135deg, #692e79 0%, #692e79 100%);">Tentar de Novo</button>
+    <button onclick="mostrarTela('menu')" style="margin-top: 10px;">Go back to menu</button>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
