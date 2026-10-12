@@ -636,7 +636,7 @@ function criarBalao() {
       clearInterval(intervalBaloes);
       clearInterval(timerBaloes);
       setTimeout(() => {
-        dispararTelaVitoria('You are SO awesome');
+        dispararTelaVitoria('NICEEEEE');
       }, 100);
     }
   });
@@ -747,7 +747,7 @@ function atualizarCobrinha() {
     if (placar) placar.innerText = `Score: ${pontuacaoCobrinha} / ${OBJETIVO_COBRINHA}`;
 
     if (pontuacaoCobrinha >= OBJETIVO_COBRINHA) {
-      dispararTelaVitoria('CONGRATS! You sure have a big snake');
+      dispararTelaVitoria('CONGRATS! That was good play');
       return;
     }
 
